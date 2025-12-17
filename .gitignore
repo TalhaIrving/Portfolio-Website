@@ -1,0 +1,15 @@
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfstate.lock.info
+**/*.tfvars
+**/*.tfvars.json
+
+# Secrets/Env
+.env
+**/.terraform.tfstate.lock.info
+
+# OS files
+.DS_Store
+Thumbs.db
