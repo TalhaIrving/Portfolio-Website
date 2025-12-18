@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write   # Required for requesting the JWT from GitHub
+  contents: read    # Required for actions/checkout to fetch your code
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
