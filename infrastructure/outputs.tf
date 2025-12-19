@@ -47,3 +47,8 @@ output "backend_state_lock_table_arn" {
 output "website_bucket_name" {
   value = aws_s3_bucket.portfolio_website.bucket
 }
+
+output "website_bucket_arn" {
+  value = aws_s3_bucket.portfolio_website.arn
+}
+
