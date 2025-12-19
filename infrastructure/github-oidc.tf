@@ -49,6 +49,16 @@ resource "aws_iam_role_policy" "deploy_site" {
         Effect = "Allow"
         Action = ["cloudfront:CreateInvalidation"]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = ["s3:ListBucket"]
+        Resource = "arn:aws:s3:::talha-irving-terraform-state"
+      },
+      {
+        Effect = "Allow"
+        Action = ["s3:GetObject", "s3:PutObject"]
+        Resource = "arn:aws:s3:::talha-irving-terraform-state/terraform.tfstate"
       }
     ]
   })
