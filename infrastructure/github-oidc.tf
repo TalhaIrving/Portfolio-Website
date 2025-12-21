@@ -58,7 +58,18 @@ resource "aws_iam_role_policy" "deploy_site" {
       {
         Effect = "Allow"
         Action = ["s3:GetObject", "s3:PutObject"]
-        Resource = "arn:aws:s3:::talha-irving-terraform-state/terraform.tfstate"
+        Resource = "arn:aws:s3:::talha-irving-terraform-state/*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:DescribeTable",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem"
+        ]
+        # Use the exact ARN from your error message
+        Resource = "arn:aws:dynamodb:eu-west-2:026090525608:table/terraform_lock"
       }
     ]
   })
