@@ -72,22 +72,16 @@ resource "aws_iam_role_policy" "deploy_site" {
       {
         Effect = "Allow"
         Action = [
-"iam:GetOpenIDConnectProvider",
-          "iam:GetRole",
-          "iam:ListRolePolicies",         # Added
-          "s3:GetBucketPolicy",
-          "s3:GetBucketWebsite",
-          "s3:GetEncryptionConfiguration",
-          "s3:GetBucketPublicAccessBlock",
-          "s3:GetBucketAcl",
-          "s3:GetBucketCORS",             # Added
-          "cloudfront:GetOriginAccessControl",
-          "cloudfront:GetDistribution",
-          "route53:GetHostedZone",
-          "route53:ListResourceRecordSets",
-          "route53:ListTagsForResource",
-          "acm:DescribeCertificate",
-          "acm:ListTagsForCertificate"   # Added for Cert tags
+          "s3:Get*",
+          "s3:List*",
+          "iam:Get*",
+          "iam:List*",
+          "cloudfront:Get*",
+          "cloudfront:List*",
+          "route53:Get*",
+          "route53:List*",
+          "acm:Describe*",
+          "acm:List*"  # Added for Cert tags
         ]
         Resource = "*"
       }
