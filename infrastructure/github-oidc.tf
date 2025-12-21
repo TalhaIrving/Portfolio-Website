@@ -1,8 +1,6 @@
 resource "aws_iam_openid_connect_provider" "github_oidc_provider" {
-  url = "https://token.actions.githubusercontent.com"
-
-  client_id_list = ["sts.amazonaws.com"]
-
+  url             = "https://token.actions.githubusercontent.com"
+  client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
@@ -36,28 +34,28 @@ resource "aws_iam_role_policy" "deploy_site" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
-        Action = ["s3:ListBucket"]
+        Effect   = "Allow"
+        Action   = ["s3:ListBucket"]
         Resource = "arn:aws:s3:::${var.website_domain}"
       },
       {
-        Effect = "Allow"
-        Action = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
+        Effect   = "Allow"
+        Action   = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
         Resource = "arn:aws:s3:::${var.website_domain}/*"
       },
       {
-        Effect = "Allow"
-        Action = ["cloudfront:CreateInvalidation"]
+        Effect   = "Allow"
+        Action   = ["cloudfront:CreateInvalidation"]
         Resource = "*"
       },
       {
-        Effect = "Allow"
-        Action = ["s3:ListBucket"]
+        Effect   = "Allow"
+        Action   = ["s3:ListBucket"]
         Resource = "arn:aws:s3:::talha-irving-terraform-state"
       },
       {
-        Effect = "Allow"
-        Action = ["s3:GetObject", "s3:PutObject"]
+        Effect   = "Allow"
+        Action   = ["s3:GetObject", "s3:PutObject"]
         Resource = "arn:aws:s3:::talha-irving-terraform-state/*"
       },
       {
@@ -68,8 +66,24 @@ resource "aws_iam_role_policy" "deploy_site" {
           "dynamodb:PutItem",
           "dynamodb:DeleteItem"
         ]
-        # Use the exact ARN from your error message
         Resource = "arn:aws:dynamodb:eu-west-2:026090525608:table/terraform_lock"
+      },
+      # --- NEW READ PERMISSIONS ADDED BELOW ---
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:GetOpenIDConnectProvider",
+          "s3:GetBucketPolicy",
+          "s3:GetBucketWebsite",
+          "s3:GetEncryptionConfiguration",
+          "s3:GetBucketPublicAccessBlock",
+          "cloudfront:GetOriginAccessControl",
+          "cloudfront:GetDistribution",
+          "route53:GetHostedZone",
+          "route53:ListResourceRecordSets",
+          "acm:DescribeCertificate"
+        ]
+        Resource = "*"
       }
     ]
   })
