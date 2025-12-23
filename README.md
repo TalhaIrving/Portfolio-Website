@@ -16,6 +16,10 @@ The project intentionally mirrors real-world production decision-making rather t
 
 ## Architecture
 
+
+<img width="1365" height="805" alt="image" src="https://github.com/user-attachments/assets/c4d42328-5f0e-41fc-bc77-ee1497b6c474" />
+
+
 The website is hosted on AWS using the following services:
 
 * Amazon S3 for static website storage
@@ -179,3 +183,4 @@ Cloud & DevOps Engineer
 ---
 
 This infrastructure was engineered to reflect the expectations of modern cloud platform roles, prioritising reliability, security, and automation over simplified tutorial deployments.
+
