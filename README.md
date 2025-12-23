@@ -1,179 +1,173 @@
-# Portfolio Infrastructure – Cloud Engineering & DevOps Platform
+# Portfolio Website – Cloud & DevOps Project
 
-## Professional Summary
+This project is a personal portfolio website designed to demonstrate practical cloud engineering and DevOps skills using AWS, Terraform, and GitHub Actions. The site is a static website served securely over HTTPS and deployed automatically through a CI/CD pipeline.
 
-This repository contains the Infrastructure as Code (IaC) for my production-grade portfolio platform, designed and implemented to demonstrate practical capabilities as a **Cloud Engineer / DevOps Platform Engineer**.
+## Overview
 
-The environment is built on AWS using Terraform and follows industry best practices for security, scalability, automation, and maintainability. It reflects the same architectural and operational standards expected in real-world enterprise environments.
+The portfolio showcases:
 
----
+* Infrastructure as Code using Terraform
+* Secure AWS architecture for static website hosting
+* Automated CI/CD for content deployment
+* Modern authentication practices using GitHub OIDC
+* Explicit separation between application deployment and infrastructure changes
+
+The project intentionally mirrors real-world production decision-making rather than over-automation.
+
+## Architecture
+
+The website is hosted on AWS using the following services:
+
+* Amazon S3 for static website storage
+* Amazon CloudFront as a CDN in front of S3
+* AWS Certificate Manager (ACM) for TLS certificates
+* Amazon Route 53 for DNS management
+
+Traffic flow:
+
+1. User requests the site via a custom domain.
+2. Route 53 routes traffic to CloudFront.
+3. CloudFront serves cached content or retrieves it from S3.
+4. All traffic is served over HTTPS.
+
+## Repository Structure
+
+```
+.
+├── infrastructure/
+│   ├── Terraform configuration files
+│   └── Remote backend configuration (S3 + DynamoDB)
+├── website/
+│   └── Static site files (HTML, CSS, assets)
+├── .github/
+│   └── workflows/
+│       └── deploy-site.yml
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+## Infrastructure as Code (Terraform)
+
+All AWS infrastructure is provisioned and managed using Terraform.
+
+Provisioned resources include:
+
+* S3 bucket for static site hosting
+* CloudFront distribution
+* ACM certificate (issued in us-east-1)
+* Route 53 hosted zone and alias records
+* IAM roles and policies
+* GitHub OIDC provider
+
+### Terraform State Management
+
+Terraform state is stored remotely in:
+
+* Amazon S3 for durable state storage
+* DynamoDB for state locking
+
+This prevents concurrent modifications and ensures the state remains consistent and recoverable.
+
+## CI/CD Pipeline
+
+### Design Philosophy
+
+The CI/CD pipeline is intentionally hybrid:
+
+* Application (static content) deployments are fully automated.
+* Infrastructure changes are manual and explicitly controlled.
+
+This mirrors production best practices where infrastructure changes are higher risk than application updates.
+
+### Authentication (OIDC)
+
+GitHub Actions authenticates to AWS using OpenID Connect (OIDC).
+
+Key points:
+
+* No AWS access keys are stored in GitHub Secrets.
+* GitHub Actions requests short-lived credentials at runtime.
+* AWS IAM issues temporary credentials via STS.
+* Access is restricted to this repository and the `main` branch.
+
+This eliminates long-lived credentials and reduces the blast radius of any potential compromise.
+
+### Static Site Deployment (Automated)
+
+Trigger:
+
+* Push to the `main` branch.
+
+Process:
+
+* Syncs the `website/` directory to the S3 bucket.
+* Creates a CloudFront cache invalidation.
+
+Result:
+
+* Content changes are deployed automatically.
+* Updates are visible within seconds without manual intervention.
+
+### Infrastructure Validation (Optional CI)
+
+Terraform validation can be run automatically to:
+
+* Format Terraform files
+* Validate syntax
+* Generate a plan showing proposed changes
+
+These steps are non-destructive and do not modify infrastructure.
+
+### Infrastructure Deployment (Manual)
+
+Terraform applies are performed manually from a local environment.
+
+Reasoning:
+
+* Infrastructure changes are high-impact operations.
+* Manual applies ensure human review before execution.
+* Prevents accidental deletion or modification of critical resources via CI.
+
+This decision is intentional and documented, not a limitation.
+
+## IAM Security Model
+
+IAM permissions follow a strict least-privilege approach.
+
+GitHub Actions role permissions:
+
+* Write access limited to S3 object uploads and CloudFront invalidations.
+* Read-only access sufficient for Terraform state refresh and drift detection.
+* No permissions to create or destroy unrelated AWS services.
+
+## Deployment Workflow Summary
+
+1. Infrastructure changes:
+
+   * Modify Terraform files locally
+   * Run `terraform plan` and review changes
+   * Apply changes manually with `terraform apply`
+
+2. Content changes:
+
+   * Modify files in the `website/` directory
+   * Commit and push to `main`
+   * GitHub Actions deploys changes automatically
 
 ## Purpose
 
-This infrastructure has been engineered to showcase applied skills in:
+This project is designed to demonstrate:
 
-* Cloud architecture design
-* Infrastructure automation
-* Secure platform delivery
-* DevOps workflow implementation
-* Production-ready deployment patterns
+* Realistic cloud architecture decisions
+* Secure CI/CD design
+* Modern AWS authentication patterns
+* Clear separation of responsibilities between automation and control
 
-It serves as both a live portfolio backend and a technical demonstration of platform engineering competence.
-
----
-
-## Architecture Overview
-
-Core components:
-
-* Amazon S3 – Private static content origin
-* CloudFront – Global Content Delivery Network (CDN)
-* Origin Access Control (OAC) – Secure origin access
-* AWS Certificate Manager (ACM) – TLS certificate management
-* Route 53 – DNS and traffic routing
-* Terraform Remote State (S3 Backend) – State persistence and control
-
-Request flow:
-User → Route 53 → CloudFront (HTTPS) → S3 (private origin)
-
-This architecture emphasizes:
-
-* Zero public S3 exposure
-* Encrypted transport
-* Controlled access pathways
-* Performance optimisation via CDN
+It prioritizes correctness, security, and clarity over unnecessary complexity.
 
 ---
 
-## Key Engineering Implementations
-
-### Infrastructure as Code
-
-* Terraform used to declaratively manage all AWS resources
-* Remote state stored in a dedicated S3 backend
-* Reproducible, version-controlled infrastructure lifecycle
-
-Demonstrates:
-
-* Automation discipline
-* Infrastructure consistency
-* Safe change management
-
----
-
-### Secure Static Hosting
-
-* S3 bucket configured with full public access blocks
-* Bucket policies restricted exclusively to CloudFront via OAC
-
-Security principles applied:
-
-* Least privilege access
-* No direct origin exposure
-* Attack surface reduction
-
----
-
-### Content Delivery & Performance
-
-* CloudFront distribution configured with optimised cache behaviours
-* HTTPS enforced via viewer protocol policies
-* Global edge network for reduced latency
-
-Engineering focus:
-
-* Performance efficiency
-* User experience optimisation
-* Scalable delivery model
-
----
-
-### SSL & Transport Security
-
-* ACM certificate provisioned and integrated with CloudFront
-* TLS enforced across all incoming traffic
-
-Outcomes:
-
-* Secure communication
-* Industry-compliant encryption
-* Professional-grade trust layer
-
----
-
-### DNS & Traffic Routing
-
-* Route 53 hosted zone configured for alias-based routing
-* Root and www domains mapped directly to CloudFront
-
-Provides:
-
-* High availability resolution
-* Reliable domain management
-
----
-
-## Technical Highlights for Reviewers
-
-* Fully automated AWS infrastructure using Terraform
-* Secure-by-design architecture with no public S3 exposure
-* Proper separation of state management
-* Production-style resource configuration
-* Modular, extensible IaC foundation
-
-This setup reflects patterns used in:
-
-* Cloud platform teams
-* DevOps engineering environments
-* Infrastructure reliability engineering contexts
-
----
-
-## Operational Readiness
-
-* Infrastructure is live and production-capable
-* Designed for CI/CD integration
-* Supports future expansion (logging, monitoring, observability, automation pipelines)
-
-Ready for:
-
-* Continuous deployment workflows
-* Infrastructure iteration
-* Platform scale enhancement
-
----
-
-## Technology Stack
-
-* AWS
-* Terraform
-* Route 53
-* Amazon S3
-* CloudFront
-* AWS Certificate Manager
-* GitHub
-
----
-
-## Forward Roadmap
-
-* CI/CD pipeline implementation
-* Observability & monitoring integration
-* Frontend deployment automation
-* Infrastructure hardening and optimisation
-
----
-
-## Professional Positioning
-
-This project demonstrates hands-on experience with cloud infrastructure design and platform automation suitable for roles such as:
-
-* Cloud Engineer
-* DevOps Engineer
-* Platform Engineer
-* Infrastructure Engineer
-
-It highlights the ability to move beyond theoretical knowledge and deliver operational cloud systems aligned with best-practice engineering standards.
 
 ---
 
