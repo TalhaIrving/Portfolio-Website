@@ -16,9 +16,10 @@
   .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 2rem;
+    text-align: center;
   }
-  
+
   /* Headings */
   h1, h2, h3 {
     color: #f8fafc;
@@ -41,10 +42,11 @@
   }
   
   /* Lists */
-  ul {
-    margin-left: 1.25rem;
-    margin-bottom: 1.5rem;
+ul {
+  text-align: left;
+  display: inline-block;
   }
+
   
   li {
     margin-bottom: 0.5rem;
