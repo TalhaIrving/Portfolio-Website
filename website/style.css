@@ -86,8 +86,27 @@ a:hover {
   text-decoration: none; /* Removes underline on nav buttons */
 }
 
+/* Video Placeholder Styling */
+.video-placeholder {
+  background-color: #1e293b; /* Slightly lighter than body for contrast */
+  border: 1px dashed #38bdf8; /* Dashed line implies 'work in progress' */
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.video-placeholder p {
+  margin-bottom: 0;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
 section {
   border-bottom: none !important;
+  margin-bottom: 4rem; /* More space between projects */
+  padding-bottom: 2rem;
 }
 
 /* Footer - FIXED: Centered, no side borders, uses your blue */

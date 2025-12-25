@@ -33,6 +33,15 @@
           <a href="https://github.com/TalhaIrving/Portfolio-Website" target="_blank">View on GitHub</a>
         </p>
       </header>
+      <section>
+        <h2>Cloud Portfolio Website</h2>
+        <p>A static portfolio website built on AWS to demonstrate cloud infrastructure, security, and CI/CD best practices.</p>
+        <p>Hosted on S3, delivered via CloudFront, and fully provisioned using Terraform.</p>
+        
+        <div class="video-placeholder">
+          <p>🎬 Technical breakdown video coming soon: Architectural Deep Dive</p>
+        </div>
+      </section>
 
       <section>
         <h2>AWS Lambda Alerts Project</h2>
@@ -45,6 +54,61 @@
         <p>
           <a href="https://github.com/TalhaIrving/football-alerts" target="_blank">View on GitHub</a>
         </p>
+      </section>
+      That sounds like a great way to "ship" the site today while leaving room for growth. Adding a placeholder for video content shows recruiters that you aren't just building things—you're also capable of explaining them.
+
+To make this look professional, we’ll create a "Video Coming Soon" card style that fits into your current design.
+
+1. Update style.css
+Add this to the bottom of your CSS file. It creates a subtle "box" feel for your video placeholders that matches your dark slate/blue theme.
+
+CSS
+
+/* Video Placeholder Styling */
+.video-placeholder {
+    background-color: #1e293b; /* Slightly lighter than body for contrast */
+    border: 1px dashed #38bdf8; /* Dashed line implies 'work in progress' */
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.video-placeholder p {
+    margin-bottom: 0;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Ensure sections have consistent spacing */
+section {
+    margin-bottom: 4rem; /* More space between projects */
+    padding-bottom: 2rem;
+}
+2. Update projects.html
+Now, wrap the "Video Coming Soon" text in that new class. Here is how your projects should look with the boxes added:
+
+HTML
+
+      <section>
+        <h2>Cloud Portfolio Website</h2>
+        <p>A static portfolio website built on AWS to demonstrate cloud infrastructure, security, and CI/CD best practices.</p>
+        <p>Hosted on S3, delivered via CloudFront, and fully provisioned using Terraform.</p>
+        
+        <div class="video-placeholder">
+          <p>🎬 Technical breakdown video coming soon: Architectural Deep Dive</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>AWS Lambda Alerts Project</h2>
+        <p>A serverless notification system delivering real-time SMS alerts for football matches in Birmingham.</p>
+        <p>Built with Python, using EventBridge for scheduling and DynamoDB for state management.</p>
+        
+        <div class="video-placeholder">
+          <p>🎬 Technical breakdown video coming soon: Lambda & SNS Integration</p>
+        </div>
       </section>
 
       <footer>
