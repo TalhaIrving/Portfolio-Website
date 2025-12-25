@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Talha Irving</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Talha Irving</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -28,20 +29,27 @@
           and fully provisioned using Terraform. Static content is deployed
           automatically using GitHub Actions with OIDC authentication.
         </p>
-      </section>
+      </header>
 
       <section>
-        <h2>AWS Lambda Project</h2>
+        <h2>AWS Lambda Alerts Project</h2>
         <p>
-          Description coming soon.
+          A serverless notification system that delivers real-time SMS alerts for football matches in Birmingham to help residents plan around match-day traffic.
+        </p>
+        <p>
+          Built with Python and Terraform, the system uses EventBridge to trigger a Lambda function that fetches sports data via API. It leverages DynamoDB for deduplication and SNS to dispatch alerts, ensuring users only receive necessary notifications.
+        </p>
+        <p>
+          <a href="https://github.com/TalhaIrving/football-alerts" target="_blank">View on GitHub</a>
         </p>
       </section>
+
       <footer>
         <div class="footer-links">
-            <a href="https://www.linkedin.com/in/talha-irving-061745211/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/TalhaIrving" target="_blank">GitHub</a>
-          </div>
-        </footer>
-      </div>
+          <a href="https://www.linkedin.com/in/talha-irving-061745211/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/TalhaIrving" target="_blank">GitHub</a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
