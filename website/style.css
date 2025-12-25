@@ -86,6 +86,10 @@ a:hover {
   text-decoration: none; /* Removes underline on nav buttons */
 }
 
+section {
+  border-bottom: none !important;
+}
+
 /* Footer - FIXED: Centered, no side borders, uses your blue */
 footer {
   width: 100%;
