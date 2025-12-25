@@ -42,10 +42,12 @@
   }
   
   /* Lists */
-ul {
-  text-align: left;
-  display: inline-block;
+  ul {
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto 1.5rem auto;
   }
+  
 
   
   li {
