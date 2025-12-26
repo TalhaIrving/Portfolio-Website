@@ -1,6 +1,10 @@
 # Portfolio website bucket
 resource "aws_s3_bucket" "portfolio_website" {
   bucket = var.website_domain
+  tags = {
+  Project = "Portfolio"
+  Updated = "2025-12-26"
+}
 }
 
 resource "aws_s3_bucket_versioning" "portfolio_website_versioning" {
