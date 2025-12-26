@@ -139,3 +139,28 @@ footer {
   color: #38bdf8;
   font-weight: bold;
 }
+
+/* --- THE BADGE STYLING --- */
+
+/* This centers the group of badges */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* This creates the actual 'button' look for each skill */
+.badge {
+  background-color: #1e293b;   /* Darker background */
+  border: 1px solid #38bdf8;   /* Your light blue border */
+  color: #38bdf8;              /* Light blue text */
+  padding: 4px 12px;           /* Space inside the box */
+  border-radius: 50px;         /* This makes it look like a 'pill' */
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+  white-space: nowrap;         /* Keeps the skill on one line */
+}
