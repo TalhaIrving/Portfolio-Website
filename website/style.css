@@ -5,12 +5,24 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevents mobile side-scrolling */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  background-color: #0f172a;        /* dark slate */
-  color: #e5e7eb;                   /* light gray text */
+  background-color: #0f172a;
+  color: #e5e7eb;
   line-height: 1.6;
+  width: 100%;
+  overflow-x: hidden;
 }
+
+/* Custom Scrollbar for Sleek Look */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 10px; }
 
 /* Layout */
 .container {
@@ -18,6 +30,11 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+/* Ensure all elements fit on mobile screens */
+img, div, section {
+  max-width: 100%;
 }
 
 /* Headings */
@@ -28,7 +45,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 2.5rem;
-  margin-top: 1rem; /* Extra top margin for the main title */
+  margin-top: 1rem;
 }
 
 h2 {
@@ -42,17 +59,15 @@ p {
   color: #cbd5f5;
 }
 
-/* Lists - FIXED: Bullets now align to the same left level while the block is centered */
+/* Lists */
 ul {
   text-align: left;
-  display: table;      /* Shrinks container to fit longest line */
-  margin: 0 auto 1.5rem auto; /* Centers the shrunk container */
-  padding-left: 20px;  /* Space for bullets */
+  display: table;
+  margin: 0 auto 1.5rem auto;
+  padding-left: 20px;
 }
 
-li {
-  margin-bottom: 0.5rem;
-}
+li { margin-bottom: 0.5rem; }
 
 /* Links */
 a {
@@ -60,14 +75,12 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
+a:hover { text-decoration: underline; }
 
 /* Buttons / Nav links */
 .nav {
   margin-top: 2rem;
-  margin-bottom: 4rem; /* INCREASED SPACE: Between nav and 'Talha Irving' */
+  margin-bottom: 4rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -94,9 +107,8 @@ a:hover {
   border: 1px dashed #38bdf8;
   border-radius: 8px;
   padding: 20px;
-  margin: 20px auto; /* Centers the box and adds vertical spacing */
+  margin: 20px auto;
   max-width: 600px;
-  text-align: center;
 }
 
 .video-placeholder p {
@@ -108,7 +120,7 @@ a:hover {
 
 section {
   border-bottom: none !important;
-  margin-bottom: 4rem; 
+  margin-bottom: 4rem;
   padding-bottom: 2rem;
 }
 
@@ -126,8 +138,4 @@ footer {
   text-decoration: none;
   color: #38bdf8;
   font-weight: bold;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
 }
