@@ -169,11 +169,13 @@ footer {
 img {
   max-width: 100%;
   height: auto;
-  margin: 2rem 0;
 }
+
 .profile-image {
-  max-width: 220px;
-  border-radius: 12px;
+  width: 200px;          /* Controls size explicitly */
+  max-width: 100%;
+  border-radius: 50%;    /* Makes it circular */
   margin: 2rem auto;
   display: block;
+  border: 3px solid #38bdf8;   /* Subtle accent */
 }
