@@ -172,10 +172,11 @@ img {
 }
 
 .profile-image {
-  width: 200px;          /* Controls size explicitly */
-  max-width: 100%;
-  border-radius: 50%;    /* Makes it circular */
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
   margin: 2rem auto;
   display: block;
-  border: 3px solid #38bdf8;   /* Subtle accent */
 }
+
