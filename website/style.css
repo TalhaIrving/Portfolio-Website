@@ -180,3 +180,11 @@ img {
   display: block;
 }
 
+.wrestling-image {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 2rem auto;
+  display: block;
+}
