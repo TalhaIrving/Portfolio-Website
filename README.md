@@ -177,10 +177,11 @@ It prioritizes correctness, security, and clarity over unnecessary complexity.
 
 ## Author
 
-**[Your Name]**
+Talha Irving
 Cloud & DevOps Engineer
 
 ---
 
 This infrastructure was engineered to reflect the expectations of modern cloud platform roles, prioritising reliability, security, and automation over simplified tutorial deployments.
+
 
