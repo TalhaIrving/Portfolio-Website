@@ -172,6 +172,8 @@ It prioritizes correctness, security, and clarity over unnecessary complexity.
 
 ---
 
+sudo apt update
+sudo apt install python3 python3-venv python3-pip git -y
 
 ---
 
