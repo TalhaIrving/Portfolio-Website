@@ -172,8 +172,217 @@ It prioritizes correctness, security, and clarity over unnecessary complexity.
 
 ---
 
+# 🚀 How to Reproduce / Run Locally
+
+## 📦 Prerequisites
+
+Make sure you have:
+
+- Python 3.10+
+- pip
+- Git
+- Virtual environment support (`venv`)
+
+Install system requirements (Ubuntu example):
+
+```bash
 sudo apt update
 sudo apt install python3 python3-venv python3-pip git -y
+```
+
+---
+
+## 📥 Clone Repository
+
+```bash
+git clone https://github.com/TalhaIrving/RollOps.git
+cd RollOps
+```
+
+---
+
+## 🧪 Create & Activate Virtual Environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+---
+
+## 📦 Install Dependencies
+
+Using requirements file:
+
+```bash
+pip install -r requirements.txt
+```
+
+Or manually:
+
+```bash
+pip install fastapi uvicorn pydantic
+```
+
+---
+
+## ▶️ Run the Backend Server
+
+From the project root:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+---
+
+## 🌐 Local API Access
+
+Once running, your API will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Swagger docs:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## 🩺 Health Check Endpoint
+
+Request:
+
+```http
+GET /health
+```
+
+Response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+## 🆔 Create Session
+
+Request:
+
+```http
+POST /sessions
+```
+
+Response:
+
+```json
+{
+  "session_id": "generated-uuid"
+}
+```
+
+---
+
+## 🔍 Get Session
+
+Request:
+
+```http
+GET /sessions/{session_id}
+```
+
+Example:
+
+```http
+GET /sessions/123e4567-e89b-12d3-a456-426614174000
+```
+
+Response:
+
+```json
+{
+  "session_id": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+If session does not exist:
+
+```json
+{
+  "error": "not found"
+}
+```
+
+---
+
+## 🧠 Project Structure
+
+```text
+RollOps/
+│
+├── app/
+│   ├── main.py
+│   ├── routes/
+│   │   └── sessions.py
+│   ├── models/
+│   └── core/
+│
+├── tests/
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 🔄 Git Workflow
+
+After making changes:
+
+```bash
+git add .
+git commit -m "describe your change"
+git push origin main
+```
+
+---
+
+## ⚠️ Notes
+
+- Sessions are stored **in memory only**
+- Restarting the server clears sessions
+- No database is configured yet
+- Development setup only (not production)
+
+---
+
+## 🛑 Stop the Server
+
+```bash
+CTRL + C
+```
+
+---
+
+## 🚀 Planned Improvements
+
+- Persistent database storage
+- Authentication
+- Docker support
+- Cloud deployment
+- CI/CD pipeline
 
 ---
 
